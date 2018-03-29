@@ -1,8 +1,8 @@
 # Measurement Kit CI docker images
 
-This repository contains the docker files used to build the
-[bassosimone/mk-debian](https://hub.docker.com/r/bassosimone/mk-debian)
-docker images used by MK on Travis-CI.
+Home of the docker files used to build the [bassosimone/mk-debian](
+https://hub.docker.com/r/bassosimone/mk-debian) docker images used by
+MK on Travis-CI.
 
 ```
 docker build <dir>
