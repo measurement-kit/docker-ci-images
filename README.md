@@ -1,12 +1,12 @@
-# Measurement Kit artful docker images
+# Measurement Kit CI docker images
 
 This repository contains the docker files used to build the
-[bassosimone/mk-artful](https://hub.docker.com/r/bassosimone/mk-artful/)
-docker images used by MK on Travis.
+[bassosimone/mk-debian](https://hub.docker.com/r/bassosimone/mk-debian)
+docker images used by MK on Travis-CI.
 
 ```
-docker build -t latest <dir>
-docker images
-docker tag <tag> bassosimone/mk-artful:<dir>
-docker push bassosimone/mk-artful
+docker build <dir>
+docker images | head
+docker tag <tag> bassosimone/mk-debian:<dir>
+docker push bassosimone/mk-debian
 ```
