@@ -1,0 +1,18 @@
+#!/bin/sh
+set -ex
+REPOROOT=$(cd $(dirname $0)/../../ && pwd -P)
+cd $REPOROOT
+if [ "$BUILD_TYPE" = "coverage" ]; then
+    pip install --user cpp-coveralls
+fi
+if [ -x autogen.sh ]; then
+    ./autogen.sh --cmake
+fi
+cmake .
+make
+ctest -j8
+if [ "$BUILD_TYPE" = "coverage" ]; then
+    $HOME/.local/bin/coveralls --gcov-options '\-lp' --build-root              \
+          $COVERALLS_OPTIONS . > /dev/null
+fi
+
