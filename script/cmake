@@ -12,7 +12,7 @@ cmake .
 make
 ctest -j8
 if [ "$BUILD_TYPE" = "coverage" ]; then
-    $HOME/.local/bin/coveralls --gcov-options '\-lp' --build-root              \
-          $COVERALLS_OPTIONS . > /dev/null
+    $HOME/.local/bin/coveralls --gcov-options '\-lp' $COVERALLS_OPTIONS        \
+          --build-root . > /dev/null
 fi
 
