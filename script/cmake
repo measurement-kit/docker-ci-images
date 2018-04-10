@@ -1,6 +1,6 @@
 #!/bin/sh
 set -ex
-REPOROOT=$(cd $(dirname $0)/../../ && pwd -P)
+REPOROOT=$(cd $(dirname $0)/../../../ && pwd -P)
 cd $REPOROOT
 if [ "$BUILD_TYPE" = "coverage" ]; then
     pip install --user cpp-coveralls
