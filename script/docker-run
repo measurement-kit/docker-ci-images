@@ -20,7 +20,7 @@ fi
 
 docker run                                                                     \
     --cap-add=NET_ADMIN                                                        \
-    -e "BUILD_TYPE=$BUILD_TYPE"                                                \
+    -e "CMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE"                                    \
     -e "CC=$CC"                                                                \
     -e "CMAKE_OPTIONS=$CMAKE_OPTIONS"                                          \
     -e "COVERALLS_OPTIONS=$COVERALLS_OPTIONS"                                  \
