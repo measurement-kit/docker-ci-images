@@ -10,6 +10,14 @@ fi
 docker_image=$1
 script_name=$2
 
+# Travis overrides the CC and CXX set by us. Re-instate them.
+if [ "$TRAVIS_BRANCH" != "" -a "$MK_CC" != "" ]; then
+    CC=$MK_CC
+fi
+if [ "$TRAVIS_BRANCH" != "" -a "$MK_CXX" != "" ]; then
+    CXX=$MK_CXX
+fi
+
 docker run                                                                     \
     --cap-add=NET_ADMIN                                                        \
     -e "BUILD_TYPE=$BUILD_TYPE"                                                \
