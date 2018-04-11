@@ -10,7 +10,7 @@ if [ -x autogen.sh ]; then
     ./autogen.sh --cmake
 fi
 tc qdisc add dev eth0 root netem delay 200ms 10ms # Reduce speed
-cmake .
+cmake $CMAKE_OPTIONS .
 make
 ctest -j8
 if [ "$BUILD_TYPE" = "coverage" ]; then
