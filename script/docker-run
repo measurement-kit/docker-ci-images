@@ -22,6 +22,8 @@ docker run                                                                     \
     -e "CXXFLAGS=$CXXFLAGS"                                                    \
     -e "LDFLAGS=$LDFLAGS"                                                      \
     -e "TRAVIS_BRANCH=$TRAVIS_BRANCH"                                          \
+    -e "VERBOSE=$VERBOSE"                                                      \
+    -e "V=$V"                                                                  \
     -v $REPOROOT:/mk                                                           \
     $docker_image                                                              \
     /mk/.ci/docker/script/$script_name
