@@ -27,6 +27,7 @@ docker run                                                                     \
     -e "COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN"                            \
     -e "CFLAGS=$CFLAGS"                                                        \
     -e "CPPFLAGS=$CPPFLAGS"                                                    \
+    -e "CTEST_FLAGS=$CTEST_FLAGS"                                              \
     -e "CXX=$CXX"                                                              \
     -e "CXXFLAGS=$CXXFLAGS"                                                    \
     -e "LDFLAGS=$LDFLAGS"                                                      \
