@@ -7,7 +7,7 @@ if [ "$BUILD_TYPE" = "coverage" ]; then
     pip install --user cpp-coveralls
 fi
 if [ -x autogen.sh ]; then
-    ./autogen.sh --cmake
+    ./autogen.sh --cmake --context=ci
 fi
 tc qdisc add dev eth0 root netem delay 200ms 10ms # Reduce speed
 cmake $CMAKE_OPTIONS .
