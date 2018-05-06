@@ -4,15 +4,6 @@ Home of the docker files used to build the [bassosimone/mk-debian](
 https://hub.docker.com/r/bassosimone/mk-debian) docker images used by
 MK on Travis-CI.
 
-## How to generate a new docker image
-
-```
-docker build <dir>     # or docker build --no-cache <dir>
-docker images | head
-docker tag <image-id> bassosimone/mk-debian:<tag>
-docker push bassosimone/mk-debian
-```
-
 ## How to integrate into a project
 
 ```
@@ -60,3 +51,12 @@ matrix:
 ```
 
 See [script/ninja](script/ninja) for more details.
+
+## How to generate a new docker image
+
+```
+docker build --no-cache <dir>
+docker images | head
+docker tag <image-id> bassosimone/mk-debian:<tag>
+docker push bassosimone/mk-debian
+```
