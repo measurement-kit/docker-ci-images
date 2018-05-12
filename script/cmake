@@ -11,7 +11,7 @@ if [ -x autogen.sh ]; then
 fi
 tc qdisc add dev eth0 root netem delay 200ms 10ms # Reduce speed
 cmake $CMAKE_OPTIONS .
-make
+cmake --build . -- $CMAKE_BUILD_OPTIONS
 ctest -j8 $CTEST_OPTIONS
 if [ "$BUILD_TYPE" = "coverage" ]; then
     $HOME/.local/bin/coveralls --gcov-options '\-lp' --build-root .            \

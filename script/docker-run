@@ -22,6 +22,7 @@ docker run                                                                     \
     --cap-add=NET_ADMIN                                                        \
     -e "BUILD_TYPE=$BUILD_TYPE"                                                \
     -e "CC=$CC"                                                                \
+    -e "CMAKE_BUILD_OPTIONS=$CMAKE_BUILD_OPTIONS"                              \
     -e "CMAKE_OPTIONS=$CMAKE_OPTIONS"                                          \
     -e "COVERALLS_OPTIONS=$COVERALLS_OPTIONS"                                  \
     -e "COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN"                            \
