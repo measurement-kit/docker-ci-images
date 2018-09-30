@@ -33,25 +33,6 @@ matrix:
 
 See [script/cmake](script/cmake) for more details.
 
-Same as above, but using Ninja:
-
-```yaml
-language: c++
-matrix:
-  include:
-    - os: linux
-      env: BUILD_TYPE="asan"
-           CXXFLAGS="-fsanitize=address"
-           LDFLAGS="-fsanitize=address"
-      script:
-        - ./.ci/docker/script/docker-run bassosimone/mk-debian:testing ninja
-      services:
-        - docker
-      sudo: required
-```
-
-See [script/ninja](script/ninja) for more details.
-
 ## How to generate a new docker image
 
 ```
