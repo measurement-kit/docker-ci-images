@@ -2,7 +2,7 @@
 set -ex
 REPOROOT=$(cd $(dirname $0)/../../../ && pwd -P)
 cd $REPOROOT
-env|grep -v COVERALLS_REPO_TOKEN
+env|grep -v COVERALLS_REPO_TOKEN|grep -v CODECOV_TOKEN
 if [ "$BUILD_TYPE" = "coverage" ]; then
     pip install --user cpp-coveralls
 fi
@@ -14,5 +14,7 @@ ninja
 if [ "$BUILD_TYPE" = "coverage" ]; then
     $HOME/.local/bin/coveralls --gcov-options '\-lp' --build-root .            \
           $COVERALLS_OPTIONS
+    if [ "$CODECOV_TOKEN" != "" ]; then
+        bash <(curl -s https://codecov.io/bash)
+    fi
 fi
-

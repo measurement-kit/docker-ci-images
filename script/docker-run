@@ -26,6 +26,7 @@ docker run                                                                     \
     -e "CMAKE_OPTIONS=$CMAKE_OPTIONS"                                          \
     -e "COVERALLS_OPTIONS=$COVERALLS_OPTIONS"                                  \
     -e "COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN"                            \
+    -e "CODECOV_TOKEN=$CODECOV_TOKEN"                                          \
     -e "CFLAGS=$CFLAGS"                                                        \
     -e "CPPFLAGS=$CPPFLAGS"                                                    \
     -e "CTEST_OPTIONS=$CTEST_OPTIONS"                                          \
