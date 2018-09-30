@@ -6,7 +6,7 @@ env|grep -v COVERALLS_REPO_TOKEN
 if [ "$BUILD_TYPE" = "coverage" ]; then
     # cpp-coveralls v0.4.0 fails with the container I am using
     # to build; see https://github.com/eddyxu/cpp-coveralls/issues/130
-    pip install git+https://github.com/eddyxu/cpp-coveralls@master
+    pip install --user git+https://github.com/eddyxu/cpp-coveralls@master
 fi
 if [ -x autogen.sh ]; then
     ./autogen.sh --cmake --context=ci
