@@ -2,7 +2,7 @@
 set -ex
 REPOROOT=$(cd $(dirname $0)/../../../ && pwd -P)
 cd $REPOROOT
-env|grep -v COVERALLS_REPO_TOKEN|grep -v CODECOV_TOKEN
+env|grep -v COVERALLS_REPO_TOKEN
 if [ "$BUILD_TYPE" = "coverage" ]; then
     pip install --user cpp-coveralls
 fi
@@ -12,9 +12,7 @@ fi
 tc qdisc add dev eth0 root netem delay 200ms 10ms # Reduce speed
 ninja
 if [ "$BUILD_TYPE" = "coverage" ]; then
-    if [ "$CODECOV_TOKEN" != "" ]; then
-        curl -fsSL https://codecov.io/bash | bash
-    fi
     $HOME/.local/bin/coveralls --gcov-options '\-lp' --build-root .            \
           $COVERALLS_OPTIONS
 fi
+
