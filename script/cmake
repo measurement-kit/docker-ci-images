@@ -14,9 +14,9 @@ cmake $CMAKE_OPTIONS .
 cmake --build . -- $CMAKE_BUILD_OPTIONS
 ctest $CTEST_OPTIONS
 if [ "$BUILD_TYPE" = "coverage" ]; then
-    $HOME/.local/bin/coveralls --gcov-options '\-lp' --build-root .            \
-          $COVERALLS_OPTIONS
     if [ "$CODECOV_TOKEN" != "" ]; then
         curl -fsSL https://codecov.io/bash | bash
     fi
+    $HOME/.local/bin/coveralls --gcov-options '\-lp' --build-root .            \
+          $COVERALLS_OPTIONS
 fi
