@@ -17,6 +17,6 @@ if [ "$BUILD_TYPE" = "coverage" ]; then
     $HOME/.local/bin/coveralls --gcov-options '\-lp' --build-root .            \
           $COVERALLS_OPTIONS
     if [ "$CODECOV_TOKEN" != "" ]; then
-        curl -fSsl https://codecov.io/bash | bash
+        curl -fsSL https://codecov.io/bash | bash
     fi
 fi
