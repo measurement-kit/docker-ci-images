@@ -4,7 +4,9 @@ REPOROOT=$(cd $(dirname $0)/../../../ && pwd -P)
 cd $REPOROOT
 env|grep -v COVERALLS_REPO_TOKEN
 if [ "$BUILD_TYPE" = "coverage" ]; then
-    pip install --user cpp-coveralls
+    # cpp-coveralls v0.4.0 fails with the container I am using
+    # to build; see https://github.com/eddyxu/cpp-coveralls/issues/130
+    https://github.com/eddyxu/cpp-coveralls@master
 fi
 if [ -x autogen.sh ]; then
     ./autogen.sh --cmake --context=ci
@@ -17,4 +19,3 @@ if [ "$BUILD_TYPE" = "coverage" ]; then
     $HOME/.local/bin/coveralls --gcov-options '\-lp' --build-root .            \
           $COVERALLS_OPTIONS
 fi
-
