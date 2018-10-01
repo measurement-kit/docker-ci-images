@@ -36,7 +36,7 @@ See [script/cmake](script/cmake) for more details.
 ## How to generate a new docker image
 
 ```
-docker build --no-cache <dir>
+docker build --no-cache debian
 docker images | head
 docker tag <image-id> bassosimone/mk-debian:<tag>
 docker push bassosimone/mk-debian
