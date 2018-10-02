@@ -2,10 +2,7 @@
 set -ex
 REPOROOT=$(cd $(dirname $0)/../../../ && pwd -P)
 cd $REPOROOT
-env|grep -v COVERALLS_REPO_TOKEN
-if [ "$BUILD_TYPE" = "coverage" ]; then
-    pip install --user cpp-coveralls
-fi
+env|grep -v TOKEN|sort
 if [ -x autogen.sh ]; then
     ./autogen.sh --cmake --context=ci
 fi
@@ -14,6 +11,7 @@ cmake $CMAKE_OPTIONS .
 cmake --build . -- $CMAKE_BUILD_OPTIONS
 ctest $CTEST_OPTIONS
 if [ "$BUILD_TYPE" = "coverage" ]; then
-    $HOME/.local/bin/coveralls --gcov-options '\-lp' --build-root .            \
-          $COVERALLS_OPTIONS
+    lcov --directory . --capture -o lcov.info
+    curl -fsSL -o codecov.sh https://codecov.io/bash
+    bash codecov.sh -X gcov -f lcov.info
 fi
