@@ -38,6 +38,6 @@ See [script/cmake](script/cmake) for more details.
 ```
 docker build --no-cache debian
 docker images | head
-docker tag <image-id> bassosimone/mk-debian:latest
+docker tag <image-id> bassosimone/mk-debian:testing
 docker push bassosimone/mk-debian
 ```
