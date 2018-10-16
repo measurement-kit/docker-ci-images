@@ -37,7 +37,7 @@ See [script/cmake](script/cmake) for more details.
 
 ```
 docker build --no-cache debian
-docker images | head
-docker tag <image-id> bassosimone/mk-debian:testing
+docker tag `docker images | head | awk '{print $3}'|sed -n 2p` \
+    bassosimone/mk-debian:testing
 docker push bassosimone/mk-debian
 ```
