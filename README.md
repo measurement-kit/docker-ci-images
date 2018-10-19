@@ -35,7 +35,7 @@ script:
   - ./.ci/docker/script/travis $BUILD_TYPE
 ```
 
-See [script/cmake](script/cmake) for more details.
+See [script/travis](script/travis) for more details.
 
 ## How to run from AppVeyor
 
@@ -51,6 +51,8 @@ build_script:
   - cmd: git submodule update --init --recursive
   - cmd: .\.ci\docker\script\appveyor.bat
 ```
+
+See [script/appveyor.bat](script/appveyor.bat) for more details.
 
 ## How to generate a new docker image
 
