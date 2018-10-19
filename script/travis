@@ -58,5 +58,5 @@ else
   exit 1
 fi
 
-ROOTDIR=`cd $(dirname $) && pwd -P`
+ROOTDIR=`cd $(dirname $0) && pwd -P`
 $ROOTDIR/docker-run bassosimone/mk-debian:testing cmake
