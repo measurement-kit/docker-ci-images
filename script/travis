@@ -1,0 +1,62 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = "asan" ]; then
+  export BUILD_TYPE="$1"
+  export CFLAGS="-fsanitize=address -O1 -fno-omit-frame-pointer"
+  export CXXFLAGS="-fsanitize=address -O1 -fno-omit-frame-pointer"
+  export LDFLAGS="-fsanitize=address -fno-omit-frame-pointer"
+  export CMAKE_BUILD_OPTIONS="-v"
+  export CMAKE_OPTIONS="-G Ninja -D CMAKE_BUILD_TYPE=Debug"
+  export CTEST_OPTIONS="--output-on-failure -j2"
+
+elif [ "$1" = "clang" ]; then
+  export BUILD_TYPE="$1"
+  export CMAKE_BUILD_OPTIONS="-v"
+  export CMAKE_OPTIONS="-G Ninja -D CMAKE_BUILD_TYPE=Release"
+  export CTEST_OPTIONS="--output-on-failure -j2"
+  export CXXFLAGS="-stdlib=libc++"
+  export MK_CC=clang
+  export MK_CXX=clang++
+
+elif [ "$1" = "coverage" ]; then
+  export BUILD_TYPE="$1"
+  export CFLAGS="-O0 -g -fprofile-arcs -ftest-coverage"
+  export CMAKE_BUILD_OPTIONS="-v"
+  export CMAKE_OPTIONS="-G Ninja -D CMAKE_BUILD_TYPE=Debug"
+  export CTEST_OPTIONS="--output-on-failure -j2"
+  export CXXFLAGS="-O0 -g -fprofile-arcs -ftest-coverage"
+  export LDFLAGS="-lgcov"
+
+elif [ "$1" = "lsan" ]; then
+  export BUILD_TYPE="lsan"
+  export CFLAGS="-fsanitize=leak"
+  export CXXFLAGS="-fsanitize=leak"
+  export LDFLAGS="-fsanitize=leak"
+  export CMAKE_BUILD_OPTIONS="-v"
+  export CMAKE_OPTIONS="-G Ninja -D CMAKE_BUILD_TYPE=Debug"
+  export CTEST_OPTIONS="--output-on-failure -j2"
+
+elif [ "$1" = "ubsan" ]; then
+
+  export BUILD_TYPE="ubsan"
+  export CFLAGS="-fsanitize=undefined -fno-sanitize-recover"
+  export CXXFLAGS="-fsanitize=undefined -fno-sanitize-recover"
+  export LDFLAGS="-fsanitize=undefined"
+  export CMAKE_BUILD_OPTIONS="-v"
+  export CMAKE_OPTIONS="-G Ninja -D CMAKE_BUILD_TYPE=Debug"
+  export CTEST_OPTIONS="--output-on-failure -j2"
+
+elif [ "$1" = "vanilla" ]; then
+  export BUILD_TYPE="vanilla"
+  export CMAKE_BUILD_OPTIONS="-v"
+  export CMAKE_OPTIONS="-G Ninja -D CMAKE_BUILD_TYPE=Release"
+  export CTEST_OPTIONS="--output-on-failure -j2"
+
+else
+  echo "Usage: $0 [asan|clang|coverage|lsan|tsan|ubsan|vanilla]" 1>&2
+  exit 1
+fi
+
+ROOTDIR=`cd $(dirname $) && pwd -P`
+$ROOTDIR/docker-run bassosimone/mk-debian:testing cmake
