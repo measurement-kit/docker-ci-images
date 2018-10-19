@@ -10,7 +10,7 @@ name and the directory where we recommend to add it as a submodule.
 ## How to integrate into a project
 
 ```
-git submodule add https://github.com/measurement-kit/docker-ci .ci/docker
+git submodule add https://github.com/measurement-kit/ci-common .ci/common
 ```
 
 ## How to run from Travis CI
@@ -32,7 +32,7 @@ matrix:
     - env: BUILD_TYPE="ubsan"
     - env: BUILD_TYPE="vanilla"
 script:
-  - ./.ci/docker/script/travis $BUILD_TYPE
+  - ./.ci/common/script/travis $BUILD_TYPE
 ```
 
 See [script/travis](script/travis) for more details.
@@ -49,7 +49,7 @@ environment:
     - CMAKE_GENERATOR: "Visual Studio 15 2017"
 build_script:
   - cmd: git submodule update --init --recursive
-  - cmd: .\.ci\docker\script\appveyor.bat
+  - cmd: .\.ci\common\script\appveyor.bat
 ```
 
 See [script/appveyor.bat](script/appveyor.bat) for more details.

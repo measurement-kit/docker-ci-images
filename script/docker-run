@@ -38,4 +38,4 @@ docker run                                                                     \
     -v $REPOROOT:/mk                                                           \
     $DOCKER_OPTIONS                                                            \
     $docker_image                                                              \
-    /mk/.ci/docker/script/$script_name
+    /mk/.ci/common/script/$script_name
