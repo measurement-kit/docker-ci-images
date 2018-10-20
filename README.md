@@ -57,7 +57,7 @@ environment:
     - CMAKE_GENERATOR: "Visual Studio 15 2017"
 build_script:
   - cmd: git submodule update --init --recursive
-  - cmd: .\.ci\common\script\appveyor.bat
+  - cmd: .\.ci\common\script\appveyor.bat "%CMAKE_GENERATOR%"
 ```
 
 See [script/appveyor.bat](script/appveyor.bat) for more details.
