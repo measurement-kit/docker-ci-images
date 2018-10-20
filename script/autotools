@@ -3,10 +3,11 @@ set -ex
 REPOROOT=$(cd $(dirname $0)/../../../ && pwd -P)
 cd $REPOROOT
 env|grep -v TOKEN|sort
+./autogen.sh
 tc qdisc add dev eth0 root netem delay 200ms 10ms # Reduce speed
-cmake $CMAKE_OPTIONS .
-cmake --build . -- $CMAKE_BUILD_OPTIONS
-ctest $CTEST_OPTIONS
+./configure $CONFIGURE_OPTIONS
+make V=0 -j`nproc` $MAKE_OPTIONS
+make check V=0 -j`nproc` $MAKE_CHECK_OPTIONS
 if [ "$BUILD_TYPE" = "coverage" ]; then
     lcov --directory . --capture -o lcov.info
     curl -fsSL -o codecov.sh https://codecov.io/bash
