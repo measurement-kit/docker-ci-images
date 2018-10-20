@@ -37,6 +37,14 @@ script:
 
 See [script/travis](script/travis) for more details.
 
+You can locally run a specific Travis build, e.g. "vanilla", with:
+
+```
+./.ci/common/script/travis vanilla
+```
+
+Of course, this requires you to have the docker daemon running.
+
 ## How to run from AppVeyor
 
 This is a minimal `.appveyor.yml` for building for x86 and x86 using CMake:
