@@ -10,5 +10,4 @@ if exist CMakeLists.txt (
   if %errorlevel% neq 0 exit /b %errorlevel%
   ctest --output-on-failure -C Release -a
   if %errorlevel% neq 0 exit /b %errorlevel%
-  exit /b 1
 )
