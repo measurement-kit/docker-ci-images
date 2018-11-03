@@ -19,3 +19,4 @@ if [ "$BUILD_TYPE" = "coverage" ]; then
     curl -fsSL -o codecov.sh https://codecov.io/bash
     bash codecov.sh -X gcov -f lcov.info
 fi
+make install
