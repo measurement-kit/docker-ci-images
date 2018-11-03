@@ -7,7 +7,8 @@ tc qdisc add dev eth0 root netem delay 200ms 10ms # Reduce speed
 ./autogen.sh
 ./configure --disable-dependency-tracking $CONFIGURE_OPTIONS
 make -j`nproc` $MAKE_OPTIONS
-make check -j`nproc` $MAKE_CHECK_OPTIONS || {
+make check -j`nproc` TESTS= $MAKE_CHECK_OPTIONS
+make check -j6 $MAKE_CHECK_OPTIONS || {
   if [ -f ./test-suite.log ]; then
     cat ./test-suite.log
   fi
