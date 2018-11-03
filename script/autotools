@@ -3,9 +3,9 @@ set -ex
 REPOROOT=$(cd $(dirname $0)/../../../ && pwd -P)
 cd $REPOROOT
 env|grep -v TOKEN|sort
-./autogen.sh
 tc qdisc add dev eth0 root netem delay 200ms 10ms # Reduce speed
-./configure $CONFIGURE_OPTIONS
+./autogen.sh
+./configure --disable-dependency-tracking $CONFIGURE_OPTIONS
 make V=0 -j`nproc` $MAKE_OPTIONS
 make check V=0 -j`nproc` $MAKE_CHECK_OPTIONS
 if [ "$BUILD_TYPE" = "coverage" ]; then
