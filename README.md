@@ -47,7 +47,8 @@ Of course, this requires you to have the docker daemon running.
 
 ## How to run from AppVeyor
 
-This is a minimal `.appveyor.yml` for building for x86 and x86 using CMake:
+This is a minimal `.appveyor.yml` for building for `x86_64` and `x86`
+using CMake:
 
 ```yaml
 image: Visual Studio 2017
