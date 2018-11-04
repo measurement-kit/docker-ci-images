@@ -1,11 +1,9 @@
-# Measurement Kit CI scripts
+# Measurement Kit common CI scripts
 
-This repository contains CI scripts including the docker file used to build
-the [bassosimone/mk-debian](https://hub.docker.com/r/bassosimone/mk-debian)
-docker images used by MK on Travis-CI.
-
-Historically it only contained scripts related to docker builds, hence its
-name and the directory where we recommend to add it as a submodule.
+This repository contains common CI scripts used by Measurement Kit. On travis
+CI (and possibly on any other Docker enabled CI system) we use the custom
+[bassosimone/mk-debian](https://hub.docker.com/r/bassosimone/mk-debian)
+docker image to run tests. This allows us to reproduce Travis builds locally.
 
 ## How to integrate into a project
 
@@ -15,7 +13,7 @@ git submodule add https://github.com/measurement-kit/ci-common .ci/common
 
 ## How to run from Travis CI
 
-You can perform most CMake builds you may want to run with this minimal
+You can perform most builds you may want to run with this minimal
 albeit complete `.travis.yml` file:
 
 ```yaml
@@ -35,7 +33,9 @@ script:
   - ./.ci/common/script/travis $BUILD_TYPE
 ```
 
-See [script/travis](script/travis) for more details.
+The [script/travis](script/travis) will automatically trigger an `autotools`
+or a `cmake` build depending on the content of the root directory. To see what
+triggers which build, we encourage you to read such script.
 
 You can locally run a specific Travis build, e.g. "vanilla", with:
 
@@ -57,10 +57,10 @@ environment:
     - CMAKE_GENERATOR: "Visual Studio 15 2017"
 build_script:
   - cmd: git submodule update --init --recursive
-  - cmd: .\.ci\common\script\appveyor.bat "%CMAKE_GENERATOR%"
+  - cmd: cmake -G "%CMAKE_GENERATOR%"
+  - cmd: cmake --build . -- /nologo /property:Configuration=Release
+  - cmd: ctest --output-on-failure -C Release -a
 ```
-
-See [script/appveyor.bat](script/appveyor.bat) for more details.
 
 ## How to generate a new docker image
 
