@@ -1,4 +1,5 @@
 #!/bin/sh
+# This is the script run for CMake builds. At least mkcurl uses it.
 set -ex
 REPOROOT=$(cd $(dirname $0)/../../../ && pwd -P)
 cd $REPOROOT
@@ -8,7 +9,7 @@ cmake $CMAKE_OPTIONS .
 cmake --build . -- $CMAKE_BUILD_OPTIONS
 ctest $CTEST_OPTIONS
 if [ "$BUILD_TYPE" = "coverage" ]; then
-    lcov --directory . --capture -o lcov.info
-    curl -fsSL -o codecov.sh https://codecov.io/bash
-    bash codecov.sh -X gcov -f lcov.info
+  lcov --directory . --capture -o lcov.info
+  curl -fsSL -o codecov.sh https://codecov.io/bash
+  bash codecov.sh -X gcov -f lcov.info
 fi

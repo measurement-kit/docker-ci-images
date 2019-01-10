@@ -1,5 +1,8 @@
 #!/bin/sh
 set -e
+
+# This runs docker and forwards relevant environment variables
+
 REPOROOT=$(cd $(dirname $0)/../../../ && pwd -P)
 
 if [ $# -ne 2 ]; then
@@ -18,6 +21,8 @@ if [ "$TRAVIS_BRANCH" != "" -a "$MK_CXX" != "" ]; then
     CXX=$MK_CXX
 fi
 
+# Note: NET_ADMIN cap is needed to slow down speed tests to avoid hammering
+# the servers with very fast clients for no good reason.
 docker run                                                                     \
     --cap-add=NET_ADMIN                                                        \
     -e "BUILD_TYPE=$BUILD_TYPE"                                                \
