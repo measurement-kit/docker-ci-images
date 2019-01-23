@@ -67,6 +67,6 @@ build_script:
 ```
 docker build --no-cache debian
 docker tag `docker images | head | awk '{print $3}'|sed -n 2p` \
-    bassosimone/mk-debian:testing
+    bassosimone/mk-debian
 docker push bassosimone/mk-debian
 ```
