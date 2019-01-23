@@ -70,3 +70,8 @@ docker tag `docker images | head | awk '{print $3}'|sed -n 2p` \
     bassosimone/mk-debian
 docker push bassosimone/mk-debian
 ```
+
+Before v0.2.6, we used to push `bassosimone/mk-debian:testing`. Now we
+do not push any tag, hence we default to `latest`. We will keep around the
+`testing` image for some more time, until all repositories using this
+repostitory have been updated. Please, use the `latest` tag in new code.
