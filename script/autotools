@@ -20,7 +20,8 @@ make check -j6 $MAKE_CHECK_OPTIONS || {
 if [ "$BUILD_TYPE" = "coverage" ]; then
   lcov --directory . --capture -o lcov-all.info
   lcov --remove lcov-all.info                                                  \
-    'include/private/*' 'include/measurement-kit/internal/vendor/*'            \
+    '/mk/include/private/*' '/mk/include/measurement_kit/internal/vendor/*'    \
+    '/mk/example/*' '/mk/src/measurement_kit/*'                                \
     -o lcov.info
   curl -fsSL -o codecov.sh https://codecov.io/bash
   bash codecov.sh -X gcov -f lcov.info
