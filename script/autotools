@@ -18,9 +18,9 @@ make check -j6 $MAKE_CHECK_OPTIONS || {
   exit 1
 }
 if [ "$BUILD_TYPE" = "coverage" ]; then
-  # TODO(bassosimone): here we need to filter out vendored dependencies
-  # otherwise we'll report a lower than real code coverage.
   lcov --directory . --capture -o lcov.info
+  lcov --remove lcov.info                                                      \
+    'include/private/*' 'include/measurement-kit/internal/vendor/*'
   curl -fsSL -o codecov.sh https://codecov.io/bash
   bash codecov.sh -X gcov -f lcov.info
 fi
