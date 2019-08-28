@@ -1,4 +1,4 @@
-# Measurement Kit common CI scripts
+# Measurement Kit docker CI images
 
 This repository contains the Docker image we use for running CI:
 [bassosimone/mk-debian](https://hub.docker.com/r/bassosimone/mk-debian).
